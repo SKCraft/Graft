@@ -1,6 +1,6 @@
 package com.skcraft.graft;
 
-import com.skcraft.graft.module.ClassDumper;
+import com.skcraft.graft.profiler.TickInjector;
 import com.skcraft.graft.util.SimpleLogFormatter;
 
 import java.lang.instrument.Instrumentation;
@@ -15,7 +15,8 @@ public class GraftAgent {
 
         log.info("Graft is enabled.");
 
-        new ClassDumper().registerWith(inst);
+        TickInjector.register(inst);
+        ClassDumper.register(inst);
     }
 
     private static void setupLogger() {
